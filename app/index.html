@@ -16,7 +16,7 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="codepoolApp">
+<body ng-app="feedbackApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -24,25 +24,32 @@
     <!-- Add your site or application content here -->
     <div class="header">
         <div class="navbar navbar-default" role="navigation">
-            <div class="container">
+            <div class="container" ng-controller="LoginController as loginCtrl">
                 <div class="navbar-header">
 
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#js-navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
 
-                    <a class="navbar-brand" href="#/">codepool</a>
+                    <a class="navbar-brand" ui-sref="app.dashboard">feedback</a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#/">Home</a></li>
-                        <li><a ng-href="#/about">About</a></li>
-                        <li><a ng-href="#/">Contact</a></li>
+                        <li><a ui-sref-active="active" ui-sref="app.dashboard">Home</a></li>
+                        <li><a ui-sref-active="active" ui-sref="app.about">About</a></li>
+                        <li ng-cloak>
+                            <span>{{loginCtrl.greeting}}</span>
+                            <span>
+                                <!-- Button that handles sign-in/sign-out -->
+                                <button class="" ng-click="loginCtrl.toggleLogin()">{{loginCtrl.loginButtonText}}</button>
+                            </span>
+                            <img src="images/yeoman.png" ng-src="{{loginCtrl.photoURL}}" alt="profile picture">
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -51,6 +58,7 @@
 
     <div class="container">
         <div ng-view=""></div>
+        <ui-view></ui-view>
     </div>
 
     <div class="footer">
@@ -85,6 +93,7 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/firebase/firebase.js"></script>
     <script src="bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -102,7 +111,9 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/services/auth.js"></script>
     <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/about.js"></script>
     <!-- endbuild -->
 </body>

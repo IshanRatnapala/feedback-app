@@ -1,37 +1,75 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name codepoolApp
- * @description
- * # codepoolApp
- *
- * Main module of the application.
- */
-
 angular
-    .module('codepoolApp', [
+    .module('feedbackApp', [
         'ngAnimate',
         'ngCookies',
         'ngMessages',
         'ngResource',
         'ngRoute',
         'ngSanitize',
-        'ngTouch'
+        'ngTouch',
+        'firebase',
+        'ui.router'
     ])
-    .config(function ($routeProvider) {
-        $routeProvider
-            .when('/', {
+    // .config(function ($routeProvider) {
+    //     $routeProvider
+    //         .when('/', {
+    //             templateUrl: 'views/main.html',
+    //             controller: 'MainCtrl',
+    //             controllerAs: 'main'
+    //         })
+    //         .when('/about', {
+    //             templateUrl: 'views/about.html',
+    //             controller: 'AboutCtrl',
+    //             controllerAs: 'about'
+    //         })
+    //         .otherwise({
+    //             redirectTo: '/'
+    //         });
+    // });
+    .config(function ($stateProvider, $urlRouterProvider) {
+        $urlRouterProvider.otherwise("/app/");
+        
+        $stateProvider
+            .state('login', {
+                url: '/login',
+                templateUrl: 'views/login.html',
+                controller: 'LoginController',
+                controllerAs: 'loginCtrl',
+                data: {
+                    requireLogin: false
+                }
+            })
+            .state('app', {
+                abstract: true,
+                url: '/app',
+                template: '<ui-view/>',
+                data: {
+                    requireLogin: true
+                }
+            })
+            .state('app.dashboard', {
+                url: '/',
                 templateUrl: 'views/main.html',
-                controller: 'MainCtrl',
-                controllerAs: 'main'
+                controller: 'MainController',
+                controllerAs: 'mainCtrl'
             })
-            .when('/about', {
+            .state('app.about', {
+                url: '/about',
                 templateUrl: 'views/about.html',
-                controller: 'AboutCtrl',
-                controllerAs: 'about'
+                controller: 'AboutController',
+                controllerAs: 'aboutCtrl'
             })
-            .otherwise({
-                redirectTo: '/'
-            });
-    });
+    })
+    
+    .run(function ($state, $rootScope) {
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
+            var requireLogin = toState.data.requireLogin;
+
+            if (requireLogin && !firebase.auth().currentUser) {
+                event.preventDefault();
+                $state.go('login');
+            }
+        })
+    })
