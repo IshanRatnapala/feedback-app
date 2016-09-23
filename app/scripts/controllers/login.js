@@ -3,6 +3,8 @@
 angular.module('feedbackApp')
     .controller('LoginController', function ($state, authService, $rootScope, $scope) {
         var self = this;
+        var photoURL = "images/yeoman.png";
+        self.photoURL = photoURL;
 
         //TODO: add loader
         self.loading = false;
@@ -40,11 +42,9 @@ angular.module('feedbackApp')
                 self.loading = false;
                 self.loginButtonText = 'Sign in with Google';
                 self.greeting = '';
-                self.photoURL = '';
+                self.photoURL = photoURL;
             });
             $state.go('login');
-
-
         }
 
         $rootScope.$on('user-logged-in', loggedIn);

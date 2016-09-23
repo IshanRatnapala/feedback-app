@@ -48,7 +48,7 @@
                                 <!-- Button that handles sign-in/sign-out -->
                                 <button class="" ng-click="loginCtrl.toggleLogin()">{{loginCtrl.loginButtonText}}</button>
                             </span>
-                            <img src="images/yeoman.png" ng-src="{{loginCtrl.photoURL}}" alt="profile picture">
+                            <img ng-src="{{loginCtrl.photoURL}}" alt="profile picture">
                         </li>
                     </ul>
                 </div>
@@ -115,6 +115,8 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/group.js"></script>
+    <script src="scripts/filters/filter-object.js"></script>
     <!-- endbuild -->
 </body>
 
