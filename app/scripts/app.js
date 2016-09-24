@@ -12,41 +12,29 @@ angular
         'firebase',
         'ui.router'
     ])
-    // .config(function ($routeProvider) {
-    //     $routeProvider
-    //         .when('/', {
-    //             templateUrl: 'views/main.html',
-    //             controller: 'MainCtrl',
-    //             controllerAs: 'main'
-    //         })
-    //         .when('/about', {
-    //             templateUrl: 'views/about.html',
-    //             controller: 'AboutCtrl',
-    //             controllerAs: 'about'
-    //         })
-    //         .otherwise({
-    //             redirectTo: '/'
-    //         });
-    // });
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/app/");
-        
+
         $stateProvider
             .state('login', {
                 url: '/login',
                 templateUrl: 'views/login.html',
                 controller: 'LoginController',
                 controllerAs: 'loginCtrl',
-                data: {
-                    requireLogin: false
+                resolve: {
+                    "currentAuth": function (AuthService) {
+                        return AuthService.auth.$waitForSignIn();
+                    }
                 }
             })
             .state('app', {
                 abstract: true,
                 url: '/app',
                 template: '<ui-view/>',
-                data: {
-                    requireLogin: true
+                resolve: {
+                    "currentAuth": function (AuthService) {
+                        return AuthService.auth.$requireSignIn();
+                    }
                 }
             })
             .state('app.dashboard', {
@@ -62,14 +50,11 @@ angular
                 controllerAs: 'aboutCtrl'
             })
     })
-    
-    .run(function ($state, $rootScope) {
-        $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-            var requireLogin = toState.data.requireLogin;
 
-            if (requireLogin && !firebase.auth().currentUser) {
-                event.preventDefault();
+    .run(function ($state, $rootScope) {
+        $rootScope.$on("$stateChangeError", function (event, toState, toParams, fromState, fromParams, error) {
+            if (error === "AUTH_REQUIRED") {
                 $state.go('login');
             }
-        })
+        });
     })

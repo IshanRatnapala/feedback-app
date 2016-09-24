@@ -10,7 +10,6 @@ angular.module('feedbackApp')
                 member: "="
             },
             link: function (scope, element, attr) {
-                console.log(scope);
                 scope.$root.$on('feedback-form-open', function (event, openedFormScope) {
                     if (scope !== openedFormScope) {
                         scope.fromVisible = false;

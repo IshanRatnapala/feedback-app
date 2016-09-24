@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .controller('MainController', function ($scope, authService) {
+    .controller('MainController', function ($scope, AuthService) {
         var self = this;
         self.anonymous = true;
 
@@ -30,7 +30,7 @@ angular.module('feedbackApp')
         }
 
         // Save user on the db
-        var currentUser = firebase.auth().currentUser;
+        var currentUser = AuthService.currentUser;
         writeUserData(
             currentUser.uid,
             currentUser.displayName,
@@ -82,9 +82,9 @@ angular.module('feedbackApp')
         function showFeedback(userId) {
             var feedbackRef = firebase.database().ref('feedback/' + userId);
             feedbackRef.on('value', function (snapshot) {
-                $scope.$apply(function () {
+                // $scope.$apply(function () {
                     self.feedbackReceived = snapshot.val();
-                });
+                // });
 
             });
         }
@@ -98,9 +98,9 @@ angular.module('feedbackApp')
         function getMembers() {
             var membersRef = firebase.database().ref('members');
             membersRef.on('value', function (snapshot) {
-                $scope.$apply(function () {
+                // $scope.$apply(function () {
                     self.members = snapshot.val();
-                });
+                // });
 
             });
         }

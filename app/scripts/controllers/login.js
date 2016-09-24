@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .controller('LoginController', function ($state, authService, $rootScope, $scope) {
+    .controller('LoginController', function ($state, AuthService, $rootScope, $scope) {
         var self = this;
         var photoURL = "images/yeoman.png";
         self.photoURL = photoURL;
@@ -19,10 +19,10 @@ angular.module('feedbackApp')
           
             console.log('loading true')
 
-            if (!authService.currentUser()) {
-                authService.login();
+            if (!AuthService.currentUser) {
+                AuthService.login();
             } else {
-                authService.logout();
+                AuthService.logout();
             }
         }
 
