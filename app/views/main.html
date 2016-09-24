@@ -7,7 +7,8 @@
 </div>
 
 
-<div class="group-select" ng-controller="GroupController as groupCtrl">
+<!--attempt at groups -->
+<!--<div class="group-select" ng-controller="GroupController as groupCtrl">
     <form ng-submit="groupCtrl.checkGroupName()">
         <h3>Please enter your group key or create a new group</h3>
         <input type="text" class="group-key" ng-model="groupCtrl.groupKey">
@@ -16,7 +17,7 @@
 
 
     {{groupCtrl.groupKey}}
-</div>
+</div>-->
 
 <!-- Feedback List -->
 <div ng-repeat="(key, value) in mainCtrl.feedbackReceived">
@@ -24,9 +25,11 @@
 </div>
 
 <!-- User List-->
-<form class="form-inline">
+<!--<form class="form-inline">
     <input ng-model="query" type="text" placeholder="Filter by" autofocus>
-    <ul ng-repeat="member in mainCtrl.members | filterObject:'username':query">
-        <li>{{member.username}}</li>
-    </ul>
-</form>
+    <member-info member="member" ng-repeat="member in mainCtrl.members | filterObject:'username':query"></member-info>
+</form>-->
+
+<member-filter>
+    <member-info member="member" ng-repeat="member in mainCtrl.members | filterObject:'username':query"></member-info>
+</member-filter>
