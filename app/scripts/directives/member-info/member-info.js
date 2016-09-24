@@ -10,6 +10,13 @@ angular.module('feedbackApp')
                 member: "="
             },
             link: function (scope, element, attr) {
+                console.log(scope);
+                scope.$root.$on('feedback-form-open', function (event, openedFormScope) {
+                    if (scope !== openedFormScope) {
+                        scope.fromVisible = false;
+                    }
+                });
+
                 scope.feedback = {
                     message: '',
                     anonymous: false
@@ -20,6 +27,7 @@ angular.module('feedbackApp')
                 }
 
                 scope.toggleForm = function () {
+                    scope.$root.$emit('feedback-form-open', scope);
                     scope.fromVisible = !scope.fromVisible;
                 }
             }
