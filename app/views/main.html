@@ -25,6 +25,8 @@
             </div>
 
             <!-- Feedback List -->
+
+            <!-- TODO: move this to a template -->
             <h3>Feedback for you</h3>
             <div class="panel panel-default feedback-panel" ng-repeat="(key, value) in mainCtrl.feedbackReceived">
                 <div class="panel-body">
@@ -46,7 +48,10 @@
                 </div>
             </div>
 
-            <div class="form-container"></div>
+            <h3>View the feedback you have given</h3>
+            <!-- Add this functionality + edit and delete -->
+
+            <feedback-form></feedback-form>
         </div>
     </div>
 

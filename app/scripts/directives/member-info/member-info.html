@@ -8,20 +8,4 @@
             <div class="member-email">{{member.email}}</div>
         </div>
     </div>
-
-    <form class="feedback-form" ng-submit="submitFeedback()" ng-show="fromVisible">
-        <div class="overlay"></div>
-        <div class="form-content">
-            <label>
-                <span>Feedback:</span>
-                <textarea name="feedback" cols="30" rows="10" ng-model="feedback.message" placeholder="Type your message..."></textarea>
-            </label>
-            <label>
-                <span>Post anonymously:</span>
-                <input type="checkbox" ng-model="feedback.anonymous">
-            </label>
-            <input type="submit" value="Submit">
-        </div>
-
-    </form>
 </div>
