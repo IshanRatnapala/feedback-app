@@ -10,7 +10,6 @@ angular.module('feedbackApp')
         self.loading = false;
 
         // Set Defaults
-        self.greeting = '';
         self.loginButtonText = 'Sign in with Google';
 
 
@@ -28,22 +27,20 @@ angular.module('feedbackApp')
 
 
         function loggedIn(event, user) {
-            $scope.$apply(function () {
+            // $scope.$apply(function () {
                 self.loading = false;
                 self.loginButtonText = 'Sign out';
-                self.greeting = 'Hello ' + user.displayName;
                 self.photoURL = user.photoURL;
-            });
+            // });
             $state.go('app.dashboard');
         }
 
         function loggedOut() {
-            $scope.$apply(function () {
+            // $scope.$apply(function () {
                 self.loading = false;
                 self.loginButtonText = 'Sign in with Google';
-                self.greeting = '';
                 self.photoURL = photoURL;
-            });
+            // });
             $state.go('login');
         }
 
