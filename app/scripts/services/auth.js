@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .service('AuthService', function ($q, $rootScope, $firebaseAuth) {
+    .service('AuthService', function ($rootScope, $firebaseAuth) {
         var self = this;
 
         self.auth = $firebaseAuth();

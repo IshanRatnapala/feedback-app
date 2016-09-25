@@ -1,14 +1,18 @@
-<div class="member-info">
-    <div class="info-section" ng-click="toggleForm()">
-        <img class="member-avatar" src="images/yeoman.png" ng-src="{{member.photoUrl}}" />
-        <div class="member-name">{{member.username}}</div>
-        <div class="member-email">{{member.email}}</div>
+<div class="member-info col-sm-12 list-group-item">
+    <div class="info-section col-sm-12" ng-click="toggleForm()">
+        <div class="col-md-3">
+            <img class="profile-pic" src="images/yeoman.png" ng-src="{{member.photoURL}}" />
+        </div>
+        <div class="col-md-9">
+            <div class="member-name">{{member.username}}</div>
+            <div class="member-email">{{member.email}}</div>
+        </div>
     </div>
 
     <form class="feedback-form" ng-submit="submitFeedback()" ng-show="fromVisible">
         <label>
             <span>Feedback:</span>
-            <textarea name="feedback" cols="30" rows="10" ng-model="feedback.message"></textarea>
+            <textarea name="feedback" cols="30" rows="10" ng-model="feedback.message" placeholder="Type your message..."></textarea>
         </label>
         <label>
             <span>Post anonymously:</span>

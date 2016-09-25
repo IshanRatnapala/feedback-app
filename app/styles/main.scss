@@ -42,9 +42,13 @@ body {
 
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid #e5e5e5;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: rebeccapurple;
+    height: 20px;
 }
 
 .container-narrow > hr {
@@ -95,7 +99,29 @@ body {
 }
 
 
+.main-content {
+    margin-bottom: 20px;
+}
 
+.navbar {
+  margin-bottom: 40px;
+}
+
+.nav .login-toggle {
+    display: inline-block;
+    + .profile-pic {
+        height: 40px;
+        margin-top: -2px;
+    }
+}
+.profile-pic {
+    border-radius: 50%;
+}
+
+.section > [class^="col-"], .section > [class^=" col-"] {
+  padding-right: 40px;
+  padding-left: 40px;
+}
 
 .loading-spinner {
     position:fixed;
@@ -105,4 +131,32 @@ body {
     left:0; 
     opacity:0.5; 
     background: black;
+}
+
+.feedback-panel {
+    .panel-body {
+        font-size: 18px;
+        font-style: italic;
+    }
+    .panel-footer {
+        .profile-pic {
+            height: 25px;
+        }
+        .actions {
+            vertical-align: middle;
+            line-height: 25px;
+        }
+    }
+}
+
+.member-info {
+    .info-section > div {
+        height: 55px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .profile-pic {
+        height: 55px;
+    }
 }
