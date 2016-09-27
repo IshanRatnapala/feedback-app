@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .factory('FeedbackFactory', function ($firebaseArray) {
+    .factory('FeedbackFactory', function ($firebaseObject) {
         return {
             // Get feedback for the user
             getFeedback: function (userId) {
                 var feedbackRef = firebase.database().ref('receivedFeedback/' + userId);
-                return $firebaseArray(feedbackRef);
+                return $firebaseObject(feedbackRef);
             },
 
             postFeedback: function (userId, receiverId, feedback) {
@@ -24,20 +24,39 @@ angular.module('feedbackApp')
 
             // Get the feedback the user has posted
             getPostedFeedback: function (userId) {
-                var feedbackRef = firebase.database().ref('posts/' + userId);
-                return $firebaseArray(feedbackRef);
+                var feedbackRef = firebase.database().ref('givenFeedback/' + userId);
+                return $firebaseObject(feedbackRef);
             },
 
             //Edit/remove posted feedback
-            editPostedFeedback: function (receiverId) {
-                var feedbackRef = firebase.database().ref('feedback');
-                //Remove "POSTS" from firebase database
-                feedbackRef.orderByKey().startAt('-KSbF_GJtxk4AXfAXoHn').on("value", function (snapshot) {
-                    console.log(snapshot);
-                });
+            postedFeedback: {
+                archive: function (userId, postId, undo) {
+                    var receivedPostRef = firebase.database().ref('receivedFeedback/' + userId + '/' + postId);
+                    return receivedPostRef.update({ archived: !undo });
+                },
+                edit: function () {
 
-                // var userPostsRef = firebase.database().ref('posts/' + userId);
+                },
+                remove: function () {
+
+                },
             },
+
+            // _editPostedFeedback: function (userId, receiverId, postId, action) {
+            //     //archive
+            //     var receivedPostRef = firebase.database().ref('receivedFeedback/' + userId + '/' + postId);
+            //     return receivedPostRef.update({ archive: true });
+
+
+
+            //     var feedbackRef = firebase.database().ref('feedback');
+            //     //Remove "POSTS" from firebase database
+            //     feedbackRef.orderByKey().startAt('-KSbF_GJtxk4AXfAXoHn').on("value", function (snapshot) {
+            //         console.log(snapshot);
+            //     });
+
+            //     // var userPostsRef = firebase.database().ref('posts/' + userId);
+            // },
 
             // Helper object for submiting feedback
             prepareFeedbackForm: {

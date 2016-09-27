@@ -17,12 +17,17 @@ angular.module('feedbackApp')
             function (data) {
                 self.members = MemberFactory.getMembers();
 
-                self.feedbackReceived = FeedbackFactory.getFeedback(
-                    // AuthService.currentUser.uid
-                    testReciverID
+                FeedbackFactory.getFeedback(
+                    AuthService.currentUser.uid
+                    // testReciverID
+                ).$bindTo($scope, 'feedbackReceived').then(function () {
+                    console.log('feedbackReceived changed');
+                });
+
+                self.feedbackPosted = FeedbackFactory.getPostedFeedback(
+                    AuthService.currentUser.uid
                 );
 
-                FeedbackFactory.editPostedFeedback(testReciverID);
             },
             function (err) {
                 console.log(err);
