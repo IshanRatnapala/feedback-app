@@ -28,25 +28,8 @@
 
             <!-- TODO: move this to a template -->
             <h3>Feedback for you</h3>
-            <div class="panel panel-default feedback-panel" ng-repeat="(key, value) in mainCtrl.feedbackReceived">
-                <div class="panel-body">
-                    "{{value.message}}"
-                </div>
-                <div class="panel-footer">
-                    <div class="poster-info pull-left" ng-show="value.poster">
-                        <span class="poster-photo">
-                            <img class="profile-pic" src="images/yeoman.png" ng-src="{{value.poster.photoUrl}}" alt="profile picture">
-                        </span>
-                        <span class="poster-name">{{value.poster.name}}</span>
-                    </div>
-                    <div class="actions pull-right">
-                        <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
-                        <span>Archive</span>
-                    </button>
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
+            <feedback-message feedback="value" ng-repeat="(key, value) in mainCtrl.feedbackReceived" actions="AE"></feedback-message>
+           
 
             <h3>View the feedback you have given</h3>
             <!-- Add this functionality + edit and delete -->

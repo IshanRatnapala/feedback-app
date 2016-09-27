@@ -21,6 +21,8 @@ angular.module('feedbackApp')
                     // AuthService.currentUser.uid
                     testReciverID
                 );
+
+                FeedbackFactory.editPostedFeedback(testReciverID);
             },
             function (err) {
                 console.log(err);
