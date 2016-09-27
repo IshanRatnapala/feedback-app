@@ -13,7 +13,6 @@ angular.module('feedbackApp')
                 $scope.feedback = {
                     message: '',
                     anonymous: false,
-                    archive: false,
                     timestamp: null
                 };
 
@@ -24,7 +23,6 @@ angular.module('feedbackApp')
                     $scope.feedback = {
                         message: '',
                         anonymous: false,
-                        archive: false,
                         timestamp: null
                     };
 

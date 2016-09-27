@@ -5,19 +5,19 @@ angular.module('feedbackApp')
         return {
             // Get feedback for the user
             getFeedback: function (userId) {
-                var feedbackRef = firebase.database().ref('feedback/' + userId);
+                var feedbackRef = firebase.database().ref('receivedFeedback/' + userId);
                 return $firebaseArray(feedbackRef);
             },
 
             postFeedback: function (userId, receiverId, feedback) {
-                //I doubt we need angularfire here
-                var feedbackRef = firebase.database().ref('feedback/' + receiverId);
-                var userPostsRef = firebase.database().ref('posts/' + userId);
+                var feedbackWithReceiverId = feedback;
+                feedbackWithReceiverId.receiverId = receiverId;
                 // Get a key for a new Post.
-                var newPostKey = firebase.database().ref().child('feedback/' + receiverId).push().key;
+                var newPostKey = firebase.database().ref().child('posts').push().key;
                 var updates = {};
-                updates['/feedback/' + receiverId + '/' + newPostKey] = feedback;
-                updates['/posts/' + userId + '/' + newPostKey] = feedback;
+                //updates['/posts/' + newPostKey] = feedback;
+                updates['/givenFeedback/' + userId + '/' + newPostKey] = feedbackWithReceiverId;
+                updates['/receivedFeedback/' + receiverId + '/' + newPostKey] = feedback;
 
                 return firebase.database().ref().update(updates);
             },
@@ -31,7 +31,7 @@ angular.module('feedbackApp')
             //Edit/remove posted feedback
             editPostedFeedback: function (receiverId) {
                 var feedbackRef = firebase.database().ref('feedback');
-//Remove "POSTS" from firebase database
+                //Remove "POSTS" from firebase database
                 feedbackRef.orderByKey().startAt('-KSbF_GJtxk4AXfAXoHn').on("value", function (snapshot) {
                     console.log(snapshot);
                 });
