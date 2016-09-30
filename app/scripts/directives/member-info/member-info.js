@@ -11,18 +11,29 @@ angular.module('feedbackApp')
             },
             link: function (scope, element, attr) {
                 scope.toggleForm = function () {
-                    var feedbackFactory = FeedbackFactory.prepareFeedbackForm
-                    var currentReceiver = feedbackFactory.getReceiver();
+                    var prepareFeedback = FeedbackFactory.prepareFeedbackForm;
+                    var currentReceiver = prepareFeedback.getData('receiver');
 
-                    if (currentReceiver && currentReceiver.uid === scope.member.$id) {
-                        feedbackFactory.setReceiver(null);
-                    } else {
-                        feedbackFactory.setReceiver({
-                            uid: scope.member.$id,
-                            displayName: scope.member.username,
-                            photoUrl: scope.member.photoURL,
-                        });
-                    }
+                    //Dont need the condition coz we filter out the current user?
+                    // if (currentReceiver && currentReceiver.uid === scope.member.$id) {
+                    //     prepareFeedback.reset();
+                    // } else {
+                    //     prepareFeedback.setData('receiver', {
+                    //         uid: scope.member.$id,
+                    //         displayName: scope.member.username,
+                    //         photoUrl: scope.member.photoURL
+                    //     });
+                    //     prepareFeedback.setData('post', null);
+                    // }
+
+                    prepareFeedback.setData('receiver', {
+                        uid: scope.member.$id,
+                        displayName: scope.member.username,
+                        photoUrl: scope.member.photoURL
+                    });
+                    prepareFeedback.setData('post', null);
+
+                    //TODO update profile info on login??
                 }
             }
         }

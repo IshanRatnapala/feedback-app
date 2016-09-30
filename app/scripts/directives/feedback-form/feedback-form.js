@@ -9,22 +9,30 @@ angular.module('feedbackApp')
             controller: function ($scope, FeedbackFactory, AuthService) {
                 $scope.fromVisible = false;
                 $scope.receiver = null;
-                $scope.feedbackFactory = FeedbackFactory.prepareFeedbackForm;
+                $scope.prepareFeedback = FeedbackFactory.prepareFeedbackForm;
                 $scope.feedback = {
                     message: '',
                     anonymous: false,
                     timestamp: null
                 };
 
-                $scope.$watch('feedbackFactory.receiver', toggleForm);
+                $scope.$watch('prepareFeedback.receiver', toggleForm);
 
                 function toggleForm() {
-                    var receiver = $scope.feedbackFactory.receiver;
-                    $scope.feedback = {
-                        message: '',
-                        anonymous: false,
-                        timestamp: null
-                    };
+                    var receiverData = $scope.prepareFeedback.getData('receiver');
+                    var postData = $scope.prepareFeedback.getData('post');
+
+                    var receiver = receiverData;
+
+                    $scope.feedback = postData || { message: '', anonymous: false, timestamp: null };
+
+                    // $scope.feedback = {
+                    //     message: postInfo.message || '',
+                    //     anonymous: postInfo.anonymous || false,
+                    //     timestamp: postInfo.timestamp || null
+                    // };
+
+                    //TODO add edited timestamp
 
                     if (receiver) {
                         $scope.receiver = receiver;
@@ -36,7 +44,7 @@ angular.module('feedbackApp')
                 }
 
                 $scope.closeForm = function () {
-                    $scope.feedbackFactory.setReceiver(null);
+                    $scope.prepareFeedback.reset();
                 }
 
                 $scope.submitFeedback = function () {
@@ -44,14 +52,19 @@ angular.module('feedbackApp')
 
                     var userId = AuthService.currentUser.uid;
                     var receiverId = $scope.receiver.uid;
+                    var postId = $scope.feedback.postId;
+                    if (postId) {
+                        delete $scope.feedback.postId; //Because we dont need it anymore
+                    }
 
                     if (!receiverId) {
                         // No funny stuff people!
-                        $scope.feedbackFactory.setReceiver(null);
+                        $scope.prepareFeedback.reset();
                         console.warn('Invalid form data.')
                         return;
                     }
 
+                    // Poster HAS to be the current user on new posts and edits
                     if (!$scope.feedback.anonymous) {
                         $scope.feedback.poster = {
                             name: AuthService.currentUser.displayName,
@@ -59,12 +72,14 @@ angular.module('feedbackApp')
                         };
                     }
 
+                    // TODO: Deal with the timestamp for edits with a 'edited on' later
                     $scope.feedback.timestamp = new Date();
 
                     FeedbackFactory.postFeedback(
                         userId,
                         receiverId,
-                        $scope.feedback
+                        $scope.feedback,
+                        postId
                     ).then(
                         function () {
                             console.log('feedback posting success!!!');
@@ -78,7 +93,6 @@ angular.module('feedbackApp')
                             // TODO: post fail message
                         });
                 }
-
             }
         }
     });

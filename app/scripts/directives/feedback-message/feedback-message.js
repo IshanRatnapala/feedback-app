@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .directive('feedbackMessage', function (FeedbackFactory, AuthService) {
+    .directive('feedbackMessage', function ($window, FeedbackFactory, AuthService) {
         return {
             restrict: 'E',
             templateUrl: 'scripts/directives/feedback-message/feedback-message.html',
@@ -48,13 +48,42 @@ angular.module('feedbackApp')
                         // console.log(scope)
 
                         scope.editPost = function () {
-                            // TODO: create a textbox and change the val?
                             console.log('edit post');
-                            FeedbackFactory.postedFeedback.edit(userId, receiverId, postId, 'edit');
+
+                            var prepareFeedback = FeedbackFactory.prepareFeedbackForm;
+                            var currentReceiver = prepareFeedback.getData('receiver');
+
+                            prepareFeedback.setData('receiver', {
+                                uid: scope.feedback.receiverId,
+                                displayName: AuthService.currentUser.displayName,
+                                photoUrl: AuthService.currentUser.photoUrl
+                            });
+                            prepareFeedback.setData('post', {
+                                postId: scope.feedback.$id,
+                                message: scope.feedback.message,
+                                anonymous: scope.feedback.anonymous,
+                                timestamp: scope.feedback.timestamp
+                            });
                         }
                         scope.removePost = function () {
-                            console.log('delete post');
-                            FeedbackFactory.postedFeedback.remove(userId, receiverId, postId, 'remove');
+                            if ($window.confirm('Are you sure you want to delete the post?')) {
+                                console.log('delete post');
+
+                                FeedbackFactory.postFeedback(
+                                    AuthService.currentUser.uid,
+                                    scope.feedback.receiverId,
+                                    null,
+                                    scope.feedback.$id
+                                ).then(
+                                    function () {
+                                        console.log('feedback deleting success!!!');
+                                        // TODO: post success message
+                                    },
+                                    function () {
+                                        console.log('feedback deleting fail!');
+                                        // TODO: post fail message
+                                    });
+                            }
                         }
                     }
                 }
