@@ -12,11 +12,11 @@ angular.module('feedbackApp')
             compile: function (element, attr) {
                 angular.forEach(attr.actions, function (value) {
                     if (value === 'A') {
-                        appendActionButton({ icon: 'glyphicon-folder-close', text: 'Archive', class: 'archive' });
+                        appendActionButton({ icon: 'fa fa-check', text: 'Archive', class: 'archive' });
                     } else if (value === 'E') {
-                        appendActionButton({ icon: 'glyphicon-folder-close', text: 'Edit', class: 'edit' });
+                        appendActionButton({ icon: 'fa fa-pencil', text: 'Edit', class: 'edit' });
                     } else if (value === 'D') {
-                        appendActionButton({ icon: 'glyphicon-folder-close', text: 'Remove', class: 'remove' });
+                        appendActionButton({ icon: 'fa fa-trash', text: 'Remove', class: 'remove' });
                     }
                 });
 
@@ -33,7 +33,7 @@ angular.module('feedbackApp')
                     } else {
                         template = angular.element(
                             '<div class="' + action.class + '" ng-click="' + action.class + 'Post()">' +
-                            '<span class="glyphicon ' + action.icon + '" aria-hidden="true"></span>' +
+                            '<span class="' + action.icon + '" aria-hidden="true"></span>' +
                             '<span>' + action.text + '</span>' +
                             '</div>'
                         );

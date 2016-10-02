@@ -1,6 +1,8 @@
 $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/bootstrap/";
+$fa-font-path: "/bower_components/font-awesome/fonts";
 // bower:scss
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
+@import "font-awesome/scss/font-awesome.scss";
 // endbower
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -99,6 +101,21 @@ body {
 }
 
 
+body {
+    min-height: auto;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    background-position: center;
+    background-image: url(../images/background1920.png);
+}
+
+.profile-pic {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+}
+
 .main-content {
     margin-bottom: 20px;
 }
@@ -114,9 +131,6 @@ body {
         width: 40px;
         margin-top: -2px;
     }
-}
-.profile-pic {
-    border-radius: 50%;
 }
 
 .section > [class^="col-"], .section > [class^=" col-"] {
