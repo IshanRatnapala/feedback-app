@@ -16,10 +16,6 @@ $fa-font-path: "/bower_components/font-awesome/fonts";
   padding: 0.2em 0;
 }
 
-body {
-  padding: 0;
-}
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -104,12 +100,13 @@ body {
 
 body {
     overflow-x: hidden;
-    // min-height: auto;
-    // -webkit-background-size: cover;
-    // -moz-background-size: cover;
-    // background-size: cover;
-    // background-position: center;
-    // background-image: url(../images/background1920.png);
+    font-family: 'roboto';
+    padding: 0;
+}
+
+.section > [class^="col-"], .section > [class^=" col-"] {
+  padding-right: 40px;
+  padding-left: 40px;
 }
 
 .profile-pic {
@@ -118,23 +115,83 @@ body {
     width: 100px;
 }
 
-.navbar {
-  margin-bottom: 40px;
+// Navigation ------------------------------------------------------------------------------------------------
+.nav > li > a:hover, .nav > li > a:focus {
+    // opacity: 0.8;
+    background-color: unset; 
 }
+.navbar  {
+    background-color: unset;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
 
-.nav .login-toggle {
-    display: inline-block;
-    + .profile-pic {
-        height: 40px;
-        width: 40px;
-        margin-top: -2px;
+
+    margin: 25px 0 40px 0;
+
+    a {
+        opacity: 0.6;
+        color: #ffffff;
+
+        &.active {
+            opacity: 1;
+        }
+    }
+
+    .login-toggle {
+        display: inline-block;
+        + .profile-pic {
+            height: 40px;
+            width: 40px;
+            margin-top: -2px;
+        }
     }
 }
 
-.section > [class^="col-"], .section > [class^=" col-"] {
-  padding-right: 40px;
-  padding-left: 40px;
+// Background ------------------------------------------------------------------------------------------------
+#background {
+    position: fixed; 
+    top: -30%; 
+    left: -45%; 
+    width: 200%; 
+    height: 200%;
+
+    -webkit-transition: left 0.5s;
+    -moz-transition: left 0.5s;
+    transition: left 0.5s;
+
+    &.slide-0 {
+        left: -44%;
+    }
+    &.slide-1 {
+        left: -47%;
+    }
+    &.slide-2 {
+        left: -50%;
+    }
+    &.slide-3 {
+        left: -53%;
+    }
+    &.slide-4 {
+        left: -56%;
+    }
+
+    img {
+        position: absolute; 
+        top: 0; 
+        left: 0; 
+        right: 0; 
+        bottom: 0; 
+        margin: auto; 
+        min-width: 50%;
+        min-height: 50%;
+    }
 }
+
+
+
 
 .loading-spinner {
     position:fixed;
@@ -146,6 +203,8 @@ body {
     background: black;
 }
 
+
+// Feedback panel ------------------------------------------------------------------------------------------------
 .feedback-panel {
     .panel-body {
         font-size: 18px;
@@ -164,8 +223,13 @@ body {
     }
 }
 
+// Members ------------------------------------------------------------------------------------------------
 .member-info {
     word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 0 !important;
+    margin: 5px 0;
     
     .info-section > div {
         height: 55px;
@@ -173,35 +237,44 @@ body {
         flex-direction: column;
         justify-content: center;
         cursor: pointer;
+        color: #ffffff;
+        font-size: 16px;
+
+        .member-name {
+            text-transform: uppercase;
+        }
 
         .profile-pic {
             height: 55px;
             width: 55px;
         }
     }
-    
-    
+}
+
+// Feedback form ------------------------------------------------------------------------------------------------
+.feedback-form-container {
+    .overlay {
+        content: '';
+        background: black;
+        opacity: 0.5;
+        height: 100%;
+        width: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
     .feedback-form {
         position: fixed;
         top: 0;
         left: 0;
         z-index: 2;
-        width: 650px;
-        height: 340px;
+        height: 50%;
         right: 0;
         bottom: 0;
         margin: auto;
 
-        .overlay {
-            content: '';
-            background: black;
-            opacity: 0.5;
-            height: 100%;
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-        }
+        
 
         .form-content {
             background: antiquewhite;
@@ -209,6 +282,7 @@ body {
         }
     }
 }
+
 
 .main-content {
     position: relative;
