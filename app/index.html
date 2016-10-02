@@ -16,28 +16,33 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="feedbackApp">
+<body ng-app="feedbackApp" ng-class="{{slide}}">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!--navbar-fixed-top-->
-    <nav id="mainNav" class="navbar navbar-default" ng-controller="LoginController as loginCtrl">
+    <nav id="mainNav" class="navbar navbar-default" ng-controller="LoginController as loginCtrl" ng-show="loginCtrl.showNav" ng-cloak>
         <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                 </button>
-                <div class="brand">
+                <!--<div class="brand">
                     <img class="col-md-3" alt="Brand" src="images/yeoman.png">
                     <a class="navbar-brand col-md-9" ui-sref="app.dashboard">Continuous improvement</a>
-                </div>
+                </div>-->
 
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left">
+                    <li><a ui-sref-active="active" ui-sref="app.leaveFeedback">Leave feedback</a></li>
+                    <li><a ui-sref-active="active" ui-sref="app.viewMyFeedback">View my feedback</a></li>
+                    <li><a ui-sref-active="active" ui-sref="app.viewPostedFeedback">View feedback I have left</a></li>
+                </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a ui-sref-active="active" ui-sref="app.dashboard">Home</a></li>
                     <li><a ui-sref-active="active" ui-sref="app.about">About</a></li>
@@ -50,8 +55,8 @@
         </div>
     </nav>
 
-    <div class="container-fluid main-content">
-        <ui-view></ui-view>
+    <div class="main-content-container" ng-controller="ViewController as viewCtrl">
+        <div class="main-content" ng-class="{back: viewCtrl.back}" ui-view></div>
     </div>
 
     <div class="footer">
@@ -111,7 +116,10 @@
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/login.js"></script>
     <script src="scripts/controllers/about.js"></script>
-    <script src="scripts/controllers/group.js"></script>
+    <script src="scripts/controllers/view.js"></script>
+    <script src="scripts/controllers/leave-feedback.js"></script>
+    <script src="scripts/controllers/received-feedback.js"></script>
+    <script src="scripts/controllers/posted-feedback.js"></script>
     <script src="scripts/filters/filter-by-names.js"></script>
     <script src="scripts/filters/filter-archived-posts.js"></script>
     <script src="scripts/directives/member-info/member-info.js"></script>

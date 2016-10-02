@@ -5,6 +5,7 @@ angular.module('feedbackApp')
         var self = this;
         var photoURL = "images/yeoman.png";
         self.photoURL = photoURL;
+        self.showNav = false;
 
         //TODO: add loader
         self.loading = false;
@@ -31,6 +32,7 @@ angular.module('feedbackApp')
                 self.loading = false;
                 self.loginButtonText = 'Sign out';
                 self.photoURL = user.photoURL;
+                self.showNav = true;
             // });
             $state.go('app.dashboard');
         }
@@ -40,6 +42,7 @@ angular.module('feedbackApp')
                 self.loading = false;
                 self.loginButtonText = 'Sign in with Google';
                 self.photoURL = photoURL;
+                self.showNav = false;
             // });
             $state.go('login');
         }

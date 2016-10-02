@@ -48,8 +48,9 @@ body {
     border-top: 1px solid #e5e5e5;
     position: fixed;
     bottom: 0;
-    width: 100%;
-    background: rebeccapurple;
+    right: 0;
+    // width: 100%;
+    // background: rebeccapurple;
     height: 20px;
 }
 
@@ -102,22 +103,19 @@ body {
 
 
 body {
-    min-height: auto;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    background-position: center;
-    background-image: url(../images/background1920.png);
+    overflow-x: hidden;
+    // min-height: auto;
+    // -webkit-background-size: cover;
+    // -moz-background-size: cover;
+    // background-size: cover;
+    // background-position: center;
+    // background-image: url(../images/background1920.png);
 }
 
 .profile-pic {
     border-radius: 50%;
     height: 100px;
     width: 100px;
-}
-
-.main-content {
-    margin-bottom: 20px;
 }
 
 .navbar {
@@ -211,3 +209,66 @@ body {
         }
     }
 }
+
+.main-content {
+    position: relative;
+
+    &.ng-enter, &.ng-leave {
+        -webkit-transition:all 0.5s ease-in-out;
+        -moz-transition:all 0.5s ease-in-out;
+        transition:all 0.5s ease-in-out;
+    }
+    &.ng-enter {
+        opacity: 0;
+    }
+    &.ng-enter-active {
+        opacity: 1;
+    }
+    &.ng-leave {
+        opacity: 1;
+    }
+    &.ng-leave-active {
+        opacity: 0;
+    }
+
+    .app-view {
+        position: absolute;
+        width: 100%;
+        left: 0;
+
+        &.ng-enter, &.ng-leave {
+            -webkit-transition:all 0.1s ease-in-out;
+            -moz-transition:all 0.1s ease-in-out;
+            transition:all 0.1s ease-in-out;
+        }
+        &.ng-enter {
+            left: 100%;
+        }
+        &.ng-enter-active {
+            left: 0;
+        }
+        &.ng-leave {
+            left: 0;
+        }
+        &.ng-leave-active {
+            left: -100%;
+        }
+    }
+
+    &.back {
+        > .ng-enter {
+            left: -100%;
+        }
+        > .ng-enter-active {
+            left: 0;
+        }
+        > .ng-leave {
+            left: 0;
+        }
+        > .ng-leave-active {
+            left: 100%;
+        }
+    }
+}
+
+

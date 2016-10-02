@@ -1,0 +1,13 @@
+<!-- Forms and other feedback content -->
+<div class="section">
+    <div class="col-sm-6 col-md-5">
+        <!-- Feedback List -->
+        <h3>Feedback for you</h3>
+        <feedback-message feedback="value" ng-repeat="(key, value) in feedbackReceived | archived:showArchived" actions="A"></feedback-message>
+    </div>
+
+    <div ng-click="toggleArchivedVisibility()">
+        <span ng-show="showArchived">Hide archived</span>
+        <span ng-hide="showArchived">Show archived</span>
+    </div>
+</div>

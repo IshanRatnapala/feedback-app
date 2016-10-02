@@ -30,7 +30,7 @@ angular
             .state('app', {
                 abstract: true,
                 url: '/app',
-                template: '<ui-view/>',
+                template: '<div class="app-view container-fluid" ui-view></div>',
                 resolve: {
                     "currentAuth": function (AuthService) {
                         return AuthService.auth.$requireSignIn();
@@ -41,13 +41,46 @@ angular
                 url: '/',
                 templateUrl: 'views/main.html',
                 controller: 'MainController',
-                controllerAs: 'mainCtrl'
+                controllerAs: 'mainCtrl',
+                params: {
+                    slide: 0
+                }
+            })
+            .state('app.leaveFeedback', {
+                url: '/leaveFeedback',
+                templateUrl: 'views/leave-feedback.html',
+                controller: 'LeaveFeedbackController',
+                controllerAs: 'leaveFeedbackCtrl',
+                params: {
+                    slide: 1
+                }
+            })
+            .state('app.viewMyFeedback', {
+                url: '/viewMyFeedback',
+                templateUrl: 'views/received-feedback.html',
+                controller: 'ReceivedFeedbackController',
+                controllerAs: 'receivedFeedbackCtrl',
+                params: {
+                    slide: 2
+                }
+            })
+            .state('app.viewPostedFeedback', {
+                url: '/viewPostedFeedback',
+                templateUrl: 'views/posted-feedback.html',
+                controller: 'PostedFeedbackController',
+                controllerAs: 'postedFeedbackCtrl',
+                params: {
+                    slide: 3
+                }
             })
             .state('app.about', {
                 url: '/about',
                 templateUrl: 'views/about.html',
                 controller: 'AboutController',
-                controllerAs: 'aboutCtrl'
+                controllerAs: 'aboutCtrl',
+                params: {
+                    slide: 4
+                }
             })
     })
 

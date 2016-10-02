@@ -5,13 +5,21 @@
     <div class="panel-footer">
         <div class="poster-info pull-left" ng-show="feedback.poster">
             <span class="poster-photo">
-                            <img class="profile-pic" src="images/yeoman.png" ng-src="{{feedback.poster.photoUrl}}" alt="profile picture">
-                        </span>
+                <img class="profile-pic" src="images/yeoman.png" ng-src="{{feedback.poster.photoUrl}}" alt="profile picture">
+            </span>
             <span class="poster-name">{{feedback.poster.name}}</span>
+        </div>
+        <div class="poster-info pull-left" ng-hide="feedback.poster">
+            <span class="poster-photo">
+                <img class="profile-pic" src="images/yeoman.png" alt="profile picture">
+            </span>
+            <span class="poster-name italic">Anonymous</span>
         </div>
         <div class="actions pull-right">
 
         </div>
         <div class="clearfix"></div>
     </div>
+
+    <div><span ng-click="archiveToggle.toggle()">{{archiveToggle.text}}</span></div>
 </div>

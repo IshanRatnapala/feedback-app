@@ -45,8 +45,6 @@ angular.module('feedbackApp')
 
                 return {
                     post: function (scope, element, attr) {
-                        // console.log(scope)
-
                         scope.editPost = function () {
                             console.log('edit post');
 

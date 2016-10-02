@@ -1,0 +1,20 @@
+<!-- Member list -->
+<div class="row">
+    <!-- Member list -->
+    <div class="section">
+        <div class="col-sm-6 col-md-3">
+            <!-- User List-->
+            <h3>Feedback for your colleagues</h3>
+            <form>
+                <div class="form-group">
+                    <input class="form-control" ng-model="query" type="text" placeholder="Filter by">
+                </div>
+                <div class="list-group">
+                    <member-info member="member" ng-repeat="member in leaveFeedbackCtrl.members | filterByNames:'username':query"></member-info>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<feedback-form></feedback-form>
