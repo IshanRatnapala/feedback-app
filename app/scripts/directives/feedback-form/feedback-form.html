@@ -1,29 +1,38 @@
 <div class="feedback-form-container" ng-show="fromVisible">
     <div class="overlay"></div>
-    <div class="feedback-form col-xs-12 col-sm-10 col-md-8">
-        <form class="panel panel-default" ng-submit="submitFeedback()">
+    <div class="feedback-form col-xs-10 col-sm-8 col-md-6">
+        <form class="panel" ng-submit="submitFeedback()">
             <div class="panel-heading">
-                <div class="pull-left">
-                    <img class="profile-pic" src="images/yeoman.png" ng-src="{{receiver.photoURL}}" />
-                    <div class="member-name">{{receiver.displayName}}</div>
+                <div class="info-section pull-left">
+                    <!--<img class="profile-pic" src="images/yeoman.png" ng-src="{{receiver.photoURL}}" />
+                    <div class="member-name">{{receiver.displayName}}</div>-->
+
+                    <div class="profile-pic-container">
+                        <img class="profile-pic" src="images/yeoman.png" ng-src="{{receiver.photoURL}}" />
+                    </div>
+                    <div class="member-info-container">
+                        <div class="member-name">{{receiver.displayName}}</div>
+                    </div>
                 </div>
                 <div class="pull-right">
-                    <div class="close-button" ng-click="closeForm()">close this pls</div>
+                    <div class="close-button" ng-click="closeForm()"><i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <textarea name="feedback" cols="30" rows="10" ng-model="feedback.message" placeholder="Type your message..."></textarea>
+                <textarea name="feedback" cols="20" rows="8" ng-model="feedback.message" placeholder="Type your message..."></textarea>
             </div>
             <div class="panel-footer">
                 <div class="pull-left">
-                    <label>
-                <span>Post anonymously:</span>
-                <input type="checkbox" ng-model="feedback.anonymous">
-            </label>
+                <label>
+                    <input type="checkbox" ng-model="feedback.anonymous">
+                    <span class="button-text invert">Post anonymously</span>
+                </label>
                 </div>
                 <div class="pull-right">
-                    <input type="submit" value="Submit">
+                    <!--<input type="submit" value="Submit">-->
+                    <a href="#" class="button-text invert" type="submit">Submit</a>
                 </div>
                 <div class="clearfix"></div>
             </div>

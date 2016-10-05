@@ -115,6 +115,69 @@ body {
     width: 100px;
 }
 
+.close-button {
+    cursor: pointer;
+    padding: 10px 0;
+}
+
+a:hover, a:focus {
+    opacity: 1;
+    text-decoration: none;
+    font-weight: normal;
+    color: #ffffff;
+    &.invert {
+        color: #000000;
+    }
+}
+
+.button-text {
+    font-size: 18px;
+    opacity: 0.6;
+    color: #ffffff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: normal;
+    padding: 20px 0;
+    cursor: pointer;
+    &.invert {
+        color: #000000;
+    }
+    &.active {
+        opacity: 1;
+    }
+    &:hover {
+        opacity: 1;
+    }
+}
+
+.fa-quote-left.fa.fa-pull-left {
+    margin-right: 1em;
+}
+.fa-quote-right.fa.fa-pull-right {
+    margin-left: 1em;
+}
+
+.panel {
+    border-radius: 0;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    .panel-heading {
+        padding: 15px 30px;
+        border-bottom: 1px solid #e5e5e5;
+        border: none;
+    }
+    .panel-body {
+        padding: 15px 30px;
+    }
+    .panel-footer {
+        padding: 16px 30px 14px;
+        background-color: unset;
+        border: none;
+    }
+}
+
+
 // Navigation ------------------------------------------------------------------------------------------------
 .nav > li > a:hover, .nav > li > a:focus {
     // opacity: 0.8;
@@ -124,21 +187,10 @@ body {
     background-color: unset;
     border: none;
     text-transform: uppercase;
-    font-weight: bold;
+    // font-weight: bold;
     font-size: 18px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-
-
-    margin: 25px 0 40px 0;
-
-    a {
-        opacity: 0.6;
-        color: #ffffff;
-
-        &.active {
-            opacity: 1;
-        }
-    }
+    margin: 20px 0 60px 0;
 
     .login-toggle {
         display: inline-block;
@@ -152,6 +204,8 @@ body {
 
 // Background ------------------------------------------------------------------------------------------------
 #background {
+    background: currentcolor;
+
     position: fixed; 
     top: -30%; 
     left: -45%; 
@@ -191,8 +245,6 @@ body {
 }
 
 
-
-
 .loading-spinner {
     position:fixed;
     width:100%; 
@@ -223,30 +275,55 @@ body {
     }
 }
 
-// Members ------------------------------------------------------------------------------------------------
-.member-info {
-    word-wrap: break-word;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: none;
-    border-radius: 0 !important;
-    margin: 5px 0;
-    
-    .info-section > div {
+
+// Member info section ------------------------------------------------------------------------------------------------
+.info-section {
+    > div {
         height: 55px;
         display: flex;
-        flex-direction: column;
         justify-content: center;
-        cursor: pointer;
-        color: #ffffff;
         font-size: 16px;
+    }
+
+    .profile-pic-container {
+        float: left;
+        .profile-pic {
+            height: 55px;
+            width: 55px;
+        }
+    }
+
+    .member-info-container {
+        flex-direction: column;
+        padding-left: 20px;
 
         .member-name {
             text-transform: uppercase;
         }
+        .member-email {
+            opacity: 0.6;
+        }
+    }
+    
+    
+}
 
-        .profile-pic {
-            height: 55px;
-            width: 55px;
+// Members ------------------------------------------------------------------------------------------------
+.member-info {
+    word-wrap: break-word;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    border-radius: 0 !important;
+    margin: 5px 0;
+
+    &:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .info-section {
+        > div {
+            cursor: pointer;
+            color: #ffffff;
         }
     }
 }
@@ -256,7 +333,7 @@ body {
     .overlay {
         content: '';
         background: black;
-        opacity: 0.5;
+        opacity: 0.9;
         height: 100%;
         width: 100%;
         position: fixed;
@@ -273,12 +350,38 @@ body {
         right: 0;
         bottom: 0;
         margin: auto;
-
-        
-
-        .form-content {
-            background: antiquewhite;
-            position: relative;
+        padding: 10px;
+        .panel {
+            border-radius: 0;
+            background-color: #ffffff;
+            color: #000000;
+            .panel-heading {
+                padding: 15px 30px;
+                border-bottom: 1px solid #e5e5e5;
+                .info-section {
+                    .member-info-container {
+                        padding-left: 30px;
+                        .member-name {
+                            font-size: 18px;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+            .panel-body {
+                padding: 15px 30px;
+                textarea {
+                    border: none;
+                    width: 100%; 
+                    font-size: 16px;
+                    outline: none;
+                }
+            }
+            .panel-footer {
+                padding: 16px 30px 14px;
+                background-color: unset;
+                border-top: 1px solid #e5e5e5;
+            }
         }
     }
 }
@@ -345,4 +448,13 @@ body {
     }
 }
 
-
+.leave-feedback {
+    .list-group {
+        float: left;
+        border-left: 5px solid rgba(255, 255, 255, 0.6);
+        margin-left: 2px;
+        .list-group-item:first-child {
+            margin-top: 0;
+        }
+    }
+}

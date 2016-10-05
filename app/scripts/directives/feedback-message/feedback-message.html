@@ -1,6 +1,8 @@
-<div class="panel panel-default feedback-panel">
+<div class="panel feedback-panel" ng-class="{archived: feedback.archived}">
     <div class="panel-body">
-        "{{feedback.message}}"
+        <i class="fa fa-quote-left fa-1x fa-pull-left" aria-hidden="true"></i>
+        <span>{{feedback.message}}</span>
+        <i class="fa fa-quote-right fa-1x fa-pull-right" aria-hidden="true"></i>
     </div>
     <div class="panel-footer">
         <div class="poster-info pull-left" ng-show="feedback.poster">
@@ -20,6 +22,4 @@
         </div>
         <div class="clearfix"></div>
     </div>
-
-    <div><span ng-click="archiveToggle.toggle()">{{archiveToggle.text}}</span></div>
 </div>

@@ -10,7 +10,8 @@ angular
         'ngSanitize',
         'ngTouch',
         'firebase',
-        'ui.router'
+        'ui.router',
+        'ngScrollbars'
     ])
     .config(function ($stateProvider, $urlRouterProvider) {
         $urlRouterProvider.otherwise("/app/");
