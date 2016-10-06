@@ -1,13 +1,14 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .directive('feedbackMessage', function ($window, FeedbackFactory, AuthService) {
+    .directive('feedbackMessage', function ($window, FeedbackFactory, AuthService, MemberFactory) {
         return {
             restrict: 'E',
             templateUrl: 'scripts/directives/feedback-message/feedback-message.html',
             replace: true,
             scope: {
-                feedback: "="
+                feedback: "=",
+                type: "@"
             },
             compile: function (element, attr) {
                 angular.forEach(attr.actions, function (value) {
@@ -27,14 +28,15 @@ angular.module('feedbackApp')
                             '<div class="' + action.class + '">' +
                             '<label>' +
                             '<input type="checkbox" ng-model="feedback.archived">' +
+                            '<span class="button-text"></span>' +
                             '</label>' +
                             '</div>'
                         );
                     } else {
                         template = angular.element(
                             '<div class="' + action.class + '" ng-click="' + action.class + 'Post()">' +
-                            '<span class="' + action.icon + '" aria-hidden="true"></span>' +
-                            '<span>' + action.text + '</span>' +
+                            // '<span class="' + action.icon + '" aria-hidden="true"></span>' +
+                            '<span class="button-text">' + action.text + '</span>' +
                             '</div>'
                         );
                     }
@@ -45,6 +47,15 @@ angular.module('feedbackApp')
 
                 return {
                     post: function (scope, element, attr) {
+
+                        if (scope.type === 'incoming') {
+                            scope.receiver = false;
+                            scope.poster = true;
+                        } else if (scope.type === 'outgoing') {
+                            scope.receiver = MemberFactory.getMember(scope.feedback.receiverId);
+                            scope.poster = false;
+                        }
+
                         scope.editPost = function () {
                             console.log('edit post');
 

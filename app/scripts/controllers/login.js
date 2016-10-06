@@ -3,16 +3,14 @@
 angular.module('feedbackApp')
     .controller('LoginController', function ($state, AuthService, $rootScope, $scope) {
         var self = this;
-        var photoURL = "images/yeoman.png";
+        var photoURL = "images/profiledefault.png";
         self.photoURL = photoURL;
         self.showNav = false;
 
-        //TODO: add loader
         self.loading = false;
 
         // Set Defaults
         self.loginButtonText = 'Sign in with Google';
-
 
         this.toggleLogin = function () {
             self.loading = true;
@@ -20,30 +18,30 @@ angular.module('feedbackApp')
             console.log('loading true')
 
             if (!AuthService.currentUser) {
-                AuthService.login();
+                AuthService.login().catch(function (error) {
+                    console.error("Authentication failed:", error);
+                    self.loading = false;
+                });
             } else {
                 AuthService.logout();
             }
         }
 
-
         function loggedIn(event, user) {
-            // $scope.$apply(function () {
-                self.loading = false;
-                self.loginButtonText = 'Sign out';
-                self.photoURL = user.photoURL;
-                self.showNav = true;
-            // });
+            self.loading = false;
+            self.loginButtonText = 'Sign out';
+            self.photoURL = user.photoURL;
+            self.showNav = true;
+
             $state.go('app.dashboard');
         }
 
         function loggedOut() {
-            // $scope.$apply(function () {
-                self.loading = false;
-                self.loginButtonText = 'Sign in with Google';
-                self.photoURL = photoURL;
-                self.showNav = false;
-            // });
+            self.loading = false;
+            self.loginButtonText = 'Sign in with Google';
+            self.photoURL = photoURL;
+            self.showNav = false;
+
             $state.go('login');
         }
 

@@ -4,34 +4,35 @@ angular.module('feedbackApp')
     .controller('MainController', function ($scope, $firebaseArray, $firebaseObject, AuthService, FeedbackFactory, MemberFactory) {
         var self = this;
 
-        var testReciverID = 'p3RooTxS2IU8oS1BytElsPJOuwG3';
-
-        self.currentUser = AuthService.currentUser;
+        self.loading = true;
+        
+        var currentUser = AuthService.currentUser;
 
         MemberFactory.validateUser(
-            self.currentUser.uid,
-            self.currentUser.displayName,
-            self.currentUser.email,
-            self.currentUser.photoURL
+            currentUser.uid,
+            currentUser.providerData[0].displayName,
+            currentUser.providerData[0].email,
+            currentUser.providerData[0].photoURL
         ).then(
-            function (data) {
-                self.members = MemberFactory.getMembers();
+            function () {
+                console.log('dun dun du du dun dun');
 
-                FeedbackFactory.getFeedback(
-                    AuthService.currentUser.uid
-                    // testReciverID
-                ).$bindTo($scope, 'feedbackReceived').then(function () {
-                    console.log('feedbackReceived changed');
-                });
+                var now = new Date();
+                var hrs = now.getHours();
+                var msg = "";
 
-                self.feedbackPosted = FeedbackFactory.getPostedFeedback(
-                    AuthService.currentUser.uid
-                );
+                if (hrs > 0) msg = "Good morning";
+                if (hrs > 12) msg = "Good afternoon";
+                if (hrs > 17) msg = "Good evening";
+
+                self.loading = false;
+                self.greeting =  msg + ' ' + currentUser.displayName.substr(0, currentUser.displayName.indexOf(" "));
+                self.photoURL = currentUser.photoURL;
 
             },
             function (err) {
-                console.log(err);
+                console.log('User not validated', err);
+                alert('Invalid user');
+                AuthService.logout();
             });
-
-        // TODO: archive todos' and undo archive'
     });

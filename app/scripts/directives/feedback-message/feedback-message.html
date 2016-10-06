@@ -1,19 +1,30 @@
 <div class="panel feedback-panel" ng-class="{archived: feedback.archived}">
+
+    <div class="panel-heading" ng-if="receiver">
+        <div class="poster-info">
+            <span class="poster-photo">
+                <img class="profile-pic" src="images/profiledefault.png" ng-src="{{receiver.photoURL}}" alt="profile picture">
+            </span>
+            <span class="poster-name">{{receiver.username}}</span>
+        </div>
+    </div>
+
     <div class="panel-body">
         <i class="fa fa-quote-left fa-1x fa-pull-left" aria-hidden="true"></i>
         <span>{{feedback.message}}</span>
-        <i class="fa fa-quote-right fa-1x fa-pull-right" aria-hidden="true"></i>
+        <i class="fa fa-quote-right fa-1x" aria-hidden="true"></i>
     </div>
+
     <div class="panel-footer">
-        <div class="poster-info pull-left" ng-show="feedback.poster">
+        <div class="poster-info pull-left" ng-if="poster" ng-show="feedback.poster">
             <span class="poster-photo">
-                <img class="profile-pic" src="images/yeoman.png" ng-src="{{feedback.poster.photoUrl}}" alt="profile picture">
+                <img class="profile-pic" src="images/profiledefault.png" ng-src="{{feedback.poster.photoUrl}}" alt="profile picture">
             </span>
             <span class="poster-name">{{feedback.poster.name}}</span>
         </div>
-        <div class="poster-info pull-left" ng-hide="feedback.poster">
+        <div class="poster-info pull-left" ng-if="poster" ng-hide="feedback.poster">
             <span class="poster-photo">
-                <img class="profile-pic" src="images/yeoman.png" alt="profile picture">
+                <img class="profile-pic" src="images/profiledefault.png" alt="profile picture">
             </span>
             <span class="poster-name italic">Anonymous</span>
         </div>
@@ -23,3 +34,4 @@
         <div class="clearfix"></div>
     </div>
 </div>
+

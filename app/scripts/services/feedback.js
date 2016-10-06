@@ -40,14 +40,11 @@ angular.module('feedbackApp')
                 post: null,
                 setData: function (key, data) {
                     this[key] = data;
-                    console.log('Set: ', key, ' to ', this[key]);
                 },
                 getData: function (key) {
-                    console.log('Get: ', key);
                     return this[key];
                 },
                 reset: function () {
-                    console.log('reset: prepareFeedbackForm');
                     this.post = null;
                     this.receiver = null;
                 }

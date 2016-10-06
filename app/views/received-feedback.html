@@ -2,12 +2,22 @@
 <div class="section">
     <div class="col-sm-10 col-md-7 col-lg-5">
         <!-- Feedback List -->
-        <h3>Feedback for you</h3>
-        <feedback-message feedback="value" ng-repeat="(key, value) in feedbackReceived | archived:showArchived" actions="A"></feedback-message>
+        <feedback-message feedback="value" type="incoming" ng-repeat="(key, value) in feedbackReceived | archived:showArchived"
+            actions="A"></feedback-message>
     </div>
 
-    <div ng-click="toggleArchivedVisibility()">
+    <div class="col-sm-12 col-md-2" ng-click="toggleArchivedVisibility()">
         <span class="button-text" ng-show="showArchived">Hide archived</span>
         <span class="button-text" ng-hide="showArchived">Show archived</span>
+    </div>
+
+    <div class="seo-text col-sm-12 col-md-3 col-lg-4 col-lg-offset-1">
+        <h3>View the feedback you have received</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard
+            dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type
+            specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum
+            passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem
+            Ipsum.</p>
     </div>
 </div>

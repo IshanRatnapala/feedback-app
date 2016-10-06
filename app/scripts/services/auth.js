@@ -9,17 +9,21 @@ angular.module('feedbackApp')
         self.currentUser = null;
 
         self.login = function () {
-            self.auth.$signInWithPopup("google");
+            return self.auth.$signInWithPopup("google");
         }
 
         self.logout = function () {
             self.auth.$signOut();
         }
 
+        self.refreshCurrentUser = function () {
+            self.currentUser = self.auth.currentUser;
+        }
+
         self.auth.$onAuthStateChanged(function (firebaseUser) {
             if (firebaseUser) {
                 self.currentUser = firebaseUser;
-                console.log("Signed in as:", firebaseUser);
+                console.log("Signed in");
                 $rootScope.$emit('user-logged-in', firebaseUser);
                 //TODO add messages
                 // $scope.message = Signed in ;

@@ -10,7 +10,5 @@ angular.module('feedbackApp')
 
         FeedbackFactory.getFeedback(
             AuthService.currentUser.uid
-        ).$bindTo($scope, 'feedbackReceived').then(function () {
-            console.log('feedbackReceived changed');
-        });
+        ).$bindTo($scope, 'feedbackReceived');
     });

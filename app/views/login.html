@@ -1,11 +1,23 @@
-<div class="container">
-    <h1>Login</h1>
-    <h3>big-ass inspirational pic as the background</h3>
-
-    <div class="">
-        <!-- Button that handles sign-in/sign-out -->
-        <button class="" ng-click="loginCtrl.toggleLogin()">Sign in with Google</button>
+<div class="login-page container-fluid">
+    <div class="login-area col-xs-10 col-md-10 col-lg-4 col-lg-offset-5 pull-right">
+        <img class="profile-pic" ng-src="{{loginCtrl.photoURL}}" alt="profile picture">
+        <a class="button-text" href="#" ng-click="loginCtrl.toggleLogin()">Sign in with Google</a>
     </div>
+
+    <div class="seo-text col-sm-10 col-md-10 col-lg-3 pull-left">
+        <h3>SEO TEXT ETC ETC</h3>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy
+        text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
+        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially
+        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and
+        more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+    </div>
+
 </div>
 
-<div class="loading-spinner" ng-show="loginCtrl.loading"></div>
+<div class="loading-spinner" ng-show="loginCtrl.loading">
+    <div class="actual-spinner">
+        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </div>
+</div>

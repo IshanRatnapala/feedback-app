@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .controller('ViewController', function ($rootScope, $scope) {
+    .controller('ViewController', function ($rootScope, $scope, FeedbackFactory) {
         var self = this;
         self.back = false;
 
@@ -13,6 +13,9 @@ angular.module('feedbackApp')
             }
             
             $rootScope.slide = 'slide-' + toParams.slide;
+
+            // Reset feedback form
+            FeedbackFactory.prepareFeedbackForm.reset();
         });
 
         $rootScope.$on('$viewContentAnimationEnded', function (event, toState, toParams, fromState, fromParams) {

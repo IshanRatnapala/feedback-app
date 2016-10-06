@@ -1,8 +1,17 @@
 <div class="row">
     <div class="section">
         <div class="col-sm-10 col-md-7 col-lg-5">
+            <feedback-message feedback="value" type="outgoing" ng-repeat="(key, value) in postedFeedbackCtrl.feedbackPosted" actions="ED"></feedback-message>
+        </div>
+
+        <div class="seo-text col-sm-10 col-md-10 col-lg-4 col-lg-offset-3">
             <h3>View the feedback you have given</h3>
-            <feedback-message feedback="value" ng-repeat="(key, value) in postedFeedbackCtrl.feedbackPosted" actions="ED"></feedback-message>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's
+                standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it
+                to make a type specimen book. It has survived not only five centuries, but also the leap into electronic
+                typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker
+                including versions of Lorem Ipsum.</p>
         </div>
     </div>
 </div>

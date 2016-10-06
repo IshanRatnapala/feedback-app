@@ -1,12 +1,9 @@
 <div class="feedback-form-container" ng-show="fromVisible">
     <div class="overlay"></div>
     <div class="feedback-form col-xs-10 col-sm-8 col-md-6">
-        <form class="panel" ng-submit="submitFeedback()">
+        <form class="panel">
             <div class="panel-heading">
                 <div class="info-section pull-left">
-                    <!--<img class="profile-pic" src="images/yeoman.png" ng-src="{{receiver.photoURL}}" />
-                    <div class="member-name">{{receiver.displayName}}</div>-->
-
                     <div class="profile-pic-container">
                         <img class="profile-pic" src="images/yeoman.png" ng-src="{{receiver.photoURL}}" />
                     </div>
@@ -21,18 +18,19 @@
                 <div class="clearfix"></div>
             </div>
             <div class="panel-body">
-                <textarea name="feedback" cols="20" rows="8" ng-model="feedback.message" placeholder="Type your message..."></textarea>
+                <textarea name="feedback" cols="20" rows="8" ng-model="feedback.message" placeholder="Type your message..." autofocus></textarea>
             </div>
             <div class="panel-footer">
                 <div class="pull-left">
+                    
                 <label>
                     <input type="checkbox" ng-model="feedback.anonymous">
                     <span class="button-text invert">Post anonymously</span>
                 </label>
+
                 </div>
                 <div class="pull-right">
-                    <!--<input type="submit" value="Submit">-->
-                    <a href="#" class="button-text invert" type="submit">Submit</a>
+                    <a href="javascript: void(0);" class="button-text invert" ng-click="submitFeedback()">Submit</a>
                 </div>
                 <div class="clearfix"></div>
             </div>
