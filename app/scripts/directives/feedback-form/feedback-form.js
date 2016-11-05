@@ -4,7 +4,7 @@ angular.module('feedbackApp')
     .directive('feedbackForm', function () {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directives/feedback-form/feedback-form.html',
+            templateUrl: 'views/directives/feedback-form.html',
             replace: true,
             controller: function ($scope, FeedbackFactory, AuthService) {
                 $scope.fromVisible = false;

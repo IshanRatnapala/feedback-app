@@ -4,7 +4,7 @@ angular.module('feedbackApp')
     .directive('memberInfo', function (FeedbackFactory) {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directives/member-info/member-info.html',
+            templateUrl: 'views/directives/member-info.html',
             replace: true,
             scope: {
                 member: "="
@@ -12,9 +12,9 @@ angular.module('feedbackApp')
             link: function (scope, element, attr) {
                 scope.toggleForm = function () {
                     var prepareFeedback = FeedbackFactory.prepareFeedbackForm;
-                    var currentReceiver = prepareFeedback.getData('receiver');
+                    //var currentReceiver = prepareFeedback.getData('receiver');
 
-                    //Dont need the condition coz we filter out the current user?
+                    //Don't need the condition coz we filter out the current user?
                     // if (currentReceiver && currentReceiver.uid === scope.member.$id) {
                     //     prepareFeedback.reset();
                     // } else {
@@ -34,7 +34,7 @@ angular.module('feedbackApp')
                     prepareFeedback.setData('post', null);
 
                     //TODO update profile info on login??
-                }
+                };
             }
-        }
+        };
     });

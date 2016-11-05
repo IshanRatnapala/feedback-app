@@ -4,7 +4,7 @@ angular.module('feedbackApp')
     .directive('feedbackMessage', function ($window, FeedbackFactory, AuthService, MemberFactory) {
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directives/feedback-message/feedback-message.html',
+            templateUrl: 'views/directives/feedback-message.html',
             replace: true,
             scope: {
                 feedback: "=",
@@ -93,9 +93,9 @@ angular.module('feedbackApp')
                                         // TODO: post fail message
                                     });
                             }
-                        }
+                        };
                     }
-                }
+                };
             }
-        }
+        };
     });
