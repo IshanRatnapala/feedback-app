@@ -32,7 +32,7 @@ angular.module('feedbackApp')
                     //     timestamp: postInfo.timestamp || null
                     // };
 
-                    //TODO add edited timestamp
+                    //TODO add edited time on the timestamp separately?
 
                     if (receiver) {
                         $scope.receiver = receiver;
@@ -45,7 +45,7 @@ angular.module('feedbackApp')
 
                 $scope.closeForm = function () {
                     $scope.prepareFeedback.reset();
-                }
+                };
 
                 $scope.submitFeedback = function () {
                     console.log('submit feedback', $scope.feedback);
@@ -60,7 +60,7 @@ angular.module('feedbackApp')
                     if (!receiverId) {
                         // No funny stuff people!
                         $scope.prepareFeedback.reset();
-                        console.warn('Invalid form data.')
+                        console.warn('Invalid form data.');
                         return;
                     }
 
@@ -92,7 +92,7 @@ angular.module('feedbackApp')
                             console.log('feedback posting fail!');
                             // TODO: post fail message
                         });
-                }
+                };
             }
-        }
+        };
     });

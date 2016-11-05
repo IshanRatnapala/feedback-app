@@ -16,7 +16,7 @@ angular.module('feedbackApp')
 
                 var feedbackWithReceiverId = feedback;
                 if (feedbackWithReceiverId) { //feedback can be null if it's a delete operation; so check it.
-                    feedbackWithReceiverId.receiverId = receiverId; 
+                    feedbackWithReceiverId.receiverId = receiverId;
                 }
 
                 // Get a key for a new Post or use the given post id for editing.
@@ -49,5 +49,5 @@ angular.module('feedbackApp')
                     this.receiver = null;
                 }
             }
-        }
+        };
     });

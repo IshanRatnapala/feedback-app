@@ -73,7 +73,7 @@ angular.module('feedbackApp')
                                 anonymous: scope.feedback.anonymous,
                                 timestamp: scope.feedback.timestamp
                             });
-                        }
+                        };
                         scope.removePost = function () {
                             if ($window.confirm('Are you sure you want to delete the post?')) {
                                 console.log('delete post');
