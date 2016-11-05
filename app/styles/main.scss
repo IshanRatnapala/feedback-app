@@ -5,6 +5,37 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 @import "font-awesome/scss/font-awesome.scss";
 // endbower
 
+@mixin animation-transition ($duration: 0.2s, $enter: 0, $active: 1, $leave: 0) {
+    position: relative;
+    &.ng-enter, &.ng-leave {
+        -webkit-transition:all $duration ease-in-out;
+        -moz-transition:all $duration ease-in-out;
+        transition:all $duration ease-in-out;
+    }
+    &.ng-enter {
+        opacity: $enter;
+    }
+    &.ng-enter-active {
+        opacity: $active;
+    }
+    &.ng-leave {
+        opacity: $active;
+    }
+    &.ng-leave-active {
+        opacity: $leave;
+    }
+}
+
+@mixin animation-hide ($duration) {
+    -webkit-transition:all $duration ease-in-out;
+    -moz-transition:all $duration ease-in-out;
+    transition:all $duration ease-in-out;
+    opacity: 1;
+    &.ng-hide {
+        opacity: 0;
+    }
+}
+
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
@@ -214,6 +245,40 @@ input[type=checkbox]:checked + span:before {
     content: "\f046";
 }
 
+// Custom Inputs
+.filter-member {
+    font-size:16px;
+    //padding:10px 10px 10px 5px;
+    //display:block;
+    //width:300px;
+
+    //border-bottom:1px solid #757575;
+
+    border-radius: 0px;
+    box-shadow: none;
+    border:none;
+    border-left: 5px solid rgba(0, 0, 0, 0);
+    color: rgba(255, 255, 255, 1);
+    background: rgba(255, 255, 255, 0.2);
+    &::-webkit-input-placeholder {
+        color: rgba(255, 255, 255, 1);
+    }
+    &:-moz-placeholder {
+        color: rgba(255, 255, 255, 1);
+    }
+    &::-moz-placeholder {
+        color: rgba(255, 255, 255, 1);
+    }
+    &:-ms-input-placeholder {
+        color: rgba(255, 255, 255, 1);
+    }
+
+    &:focus {
+        border:none;
+        border-left: 5px solid rgba(0, 0, 0, 0.8);
+    }
+}
+
 // Navigation ------------------------------------------------------------------------------------------------
 .nav > li > a:hover, .nav > li > a:focus {
     // opacity: 0.8;
@@ -330,7 +395,7 @@ input[type=checkbox]:checked + span:before {
 // Feedback panel ------------------------------------------------------------------------------------------------
 .feedback-panel {
     &.archived {
-        opacity: 0.8;
+        //opacity: 0.8;
     }
     .panel-heading {
         padding: 15px 30px 0px;
@@ -350,7 +415,7 @@ input[type=checkbox]:checked + span:before {
         font-style: italic;
     }
     .panel-footer {
-        padding: 0px 30px 6px;
+        padding: 0px 30px 14px;
         .poster-photo {
             .profile-pic {
                 height: 25px;
@@ -463,14 +528,16 @@ input[type=checkbox]:checked + span:before {
     border: none;
     border-radius: 0 !important;
     margin: 5px 0;
+    padding: 0;
 
     &:hover {
         background-color: rgba(0, 0, 0, 0.4);
     }
 
     .info-section {
+        padding: 10px 30px;
+        cursor: pointer;
         > div {
-            cursor: pointer;
             color: #ffffff;
         }
     }
@@ -536,25 +603,7 @@ input[type=checkbox]:checked + span:before {
 
 
 .main-content {
-    position: relative;
-
-    &.ng-enter, &.ng-leave {
-        -webkit-transition:all 0.5s ease-in-out;
-        -moz-transition:all 0.5s ease-in-out;
-        transition:all 0.5s ease-in-out;
-    }
-    &.ng-enter {
-        opacity: 0;
-    }
-    &.ng-enter-active {
-        opacity: 1;
-    }
-    &.ng-leave {
-        opacity: 1;
-    }
-    &.ng-leave-active {
-        opacity: 0;
-    }
+    @include animation-transition($duration: 0.5s);
 
     .app-view {
         position: absolute;
@@ -608,3 +657,19 @@ input[type=checkbox]:checked + span:before {
         }
     }
 }
+
+/* panel animations */
+.member-info, .feedback-panel {
+    @include animation-transition;
+}
+
+/* ngHide animations */
+.feedback-form-container {
+    @include animation-hide(0.2s);
+}
+
+.loading-spinner {
+    @include animation-hide(0.1s);
+}
+
+
