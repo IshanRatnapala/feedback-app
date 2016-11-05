@@ -363,6 +363,8 @@ input[type=checkbox]:checked + span:before {
         height: 100%;
         opacity: 0.7;
         background: #000000;
+        left: 0;
+        top: 0;
     }
 
     .actual-spinner {
