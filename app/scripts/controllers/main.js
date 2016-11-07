@@ -16,10 +16,10 @@ angular.module('feedbackApp')
 
         function validateUser(event, user) {
             MemberFactory.validateUser(
-                currentUser.uid,
-                currentUser.providerData[0].displayName,
-                currentUser.providerData[0].email,
-                currentUser.providerData[0].photoURL
+                user.uid,
+                user.providerData[0].displayName,
+                user.providerData[0].email,
+                user.providerData[0].photoURL
             ).then(
                 function () {
                     var now = new Date();
@@ -37,8 +37,8 @@ angular.module('feedbackApp')
                     }
 
                     self.loading = false;
-                    self.greeting =  msg + ' ' + currentUser.displayName.substr(0, currentUser.displayName.indexOf(" "));
-                    self.photoURL = currentUser.photoURL;
+                    self.greeting =  msg + ' ' + user.displayName.substr(0, user.displayName.indexOf(" "));
+                    self.photoURL = user.photoURL;
 
                 },
                 function (err) {
