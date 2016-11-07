@@ -10,15 +10,15 @@ angular.module('feedbackApp')
 
         self.login = function () {
             return self.auth.$signInWithPopup("google");
-        }
+        };
 
         self.logout = function () {
             self.auth.$signOut();
-        }
+        };
 
         self.refreshCurrentUser = function () {
             self.currentUser = self.auth.currentUser;
-        }
+        };
 
         self.auth.$onAuthStateChanged(function (firebaseUser) {
             if (firebaseUser) {
