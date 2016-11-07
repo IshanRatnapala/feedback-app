@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('feedbackApp')
-    .controller('LoginController', function ($state, AuthService, $rootScope, $scope) {
+    .controller('LoginController', function ($state, AuthService, $rootScope) {
         var self = this;
         var photoURL = "images/profiledefault.png";
         self.photoURL = photoURL;
@@ -14,8 +14,6 @@ angular.module('feedbackApp')
 
         this.toggleLogin = function () {
             self.loading = true;
-          
-            console.log('loading true')
 
             if (!AuthService.currentUser) {
                 AuthService.login().catch(function (error) {
@@ -25,7 +23,7 @@ angular.module('feedbackApp')
             } else {
                 AuthService.logout();
             }
-        }
+        };
 
         function loggedIn(event, user) {
             self.loading = false;
