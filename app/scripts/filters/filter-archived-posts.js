@@ -8,7 +8,7 @@ angular.module('feedbackApp')
             }
             var result = {};
             angular.forEach(items, function (value, key) {
-                if (value && value.archived === model) {
+                if (value && !!value.archived === model) {
                     result[key] = value;
                 }
             });
