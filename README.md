@@ -1,4 +1,4 @@
-# make-me-better
+# feedback-app
 
 *“We all need people who will give us feedback. That’s how we improve.” – Bill Gates*
 
