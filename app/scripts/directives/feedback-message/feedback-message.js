@@ -65,7 +65,7 @@ angular.module('feedbackApp')
                             prepareFeedback.setData('receiver', {
                                 uid: scope.feedback.receiverId,
                                 displayName: AuthService.currentUser.displayName,
-                                photoUrl: AuthService.currentUser.photoUrl
+                                photoUrl: AuthService.currentUser.photoURL
                             });
                             prepareFeedback.setData('post', {
                                 postId: scope.feedback.$id,
